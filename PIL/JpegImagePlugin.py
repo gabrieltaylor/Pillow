@@ -691,7 +691,7 @@ def _save(im, fp, filename):
 
     # The exif info needs to be written as one block, + APP1, + one spare byte.
     # Ensure that our buffer is big enough
-    bufsize = max(ImageFile.MAXBLOCK, bufsize, len(info.get("exif", b"")) + 5)
+    bufsize = 2 * max(ImageFile.MAXBLOCK, bufsize, len(info.get("exif", b"")) + 5)
 
     ImageFile._save(im, fp, [("jpeg", (0, 0)+im.size, 0, rawmode)], bufsize)
 
